@@ -1,7 +1,7 @@
 name: Ansible Dev
 on:
-  push:
-    branches: [ development ]
+  # push:
+  #   branches: [ development ]
   pull_request:
     branches: [ development ]
   workflow_dispatch:
@@ -18,14 +18,14 @@ jobs:
         # with:
           
           # args: "ansible" # my ansible files in a folder 
-  runPlaybook:
+  # run-playbook:
 		# The validate Job need to be sucessfull
-		needs: validate
+		# needs: validate
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    steps:
+    # runs-on: ubuntu-latest
+    # steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: testing 123
+      # - uses: actions/checkout@v3
+      # - name: testing 123
         # uses: actions/setup-python@v2
-        run: pwd && ls
+        # run: pwd && ls
