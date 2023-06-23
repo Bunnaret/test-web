@@ -10,11 +10,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v3
-      # - name: Run ansible-lint
+      - uses: actions/checkout@v3
+      - name: Run ansible-lint
       - name: check dri
         run: pwd && ls
-        # uses: ansible-community/ansible-lint-action@v6.0.2
+        uses: ansible-community/ansible-lint-action@v6.0.2
         # with:
           
           # args: "ansible" # my ansible files in a folder 
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: testing 123
         # uses: actions/setup-python@v2
         run: pwd && ls
