@@ -17,3 +17,8 @@ jobs:
         # with:
           
           # args: "ansible" # my ansible files in a folder
+  run-playbook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check dri
+        run: pwd && ls
