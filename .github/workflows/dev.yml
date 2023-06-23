@@ -13,15 +13,17 @@ jobs:
       # - uses: actions/checkout@v3
       # - name: Run ansible-lint
       - name: check dri
-        run: echo "12345"
-  run-playbook:
+        run: pwd
+      - name: list
+        run: ls
+  # run-playbook:
 		# The validate Job need to be sucessfull
 		# needs: validate
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    steps:
+    # runs-on: ubuntu-latest
+    # steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       # - uses: actions/checkout@v3
-      - name: testing 123
+      # - name: testing 123
         # uses: actions/setup-python@v2
-        run: echo "test 123"
+        # run: echo "test 123"
