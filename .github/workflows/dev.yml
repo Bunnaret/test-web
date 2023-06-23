@@ -1,6 +1,6 @@
 name: Ansible Dev
 on:
-  push:
+  pull_request:
     branches: [ development ]
   workflow_dispatch:
 
