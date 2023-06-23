@@ -18,6 +18,7 @@ jobs:
           
           # args: "ansible" # my ansible files in a folder
   run-playbook:
+    needs: [ validate ]
     runs-on: ubuntu-latest
     steps:
       - name: check dri
