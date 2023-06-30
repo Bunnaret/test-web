@@ -60,9 +60,10 @@
       service: name=nginx state=stopped
     
     - name: Clone the Git repository
-      command: sudo git clone https://github.com/Bunnaret/test-web.git
+      command: git clone https://github.com/Bunnaret/test-web.git
       args:
         chdir: /tmp
+      become: yes
 
     # - name: Install dependencies
     #   command: npm install
