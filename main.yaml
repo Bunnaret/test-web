@@ -60,28 +60,28 @@
       service: name=nginx state=stopped
     
     - name: Clone the Git repository
-      command: git clone https://github.com/Bunnaret/test-web.git
+      command: git clone --single-branch --development https://github.com/Bunnaret/test-web.git
       args:
         chdir: /tmp
       become: yes
 
-    # - name: Install dependencies
-    #   command: npm install
-    #   args:
-    #     chdir: /tmp/test-web
+    - name: Install dependencies
+      command: npm install
+      args:
+        chdir: /tmp/test-web
 
-    # - name: Build project
-    #   command: ng build --prod
-    #   args:
-    #     chdir: /tmp/test-web
+    - name: Build project
+      command: ng build --prod
+      args:
+        chdir: /tmp/test-web
 
-    # - name: Copy file app
-    #   command: cp -r /tmp/test-web/dist/test-web /var/www/html
-    #   when: state_labs.stat.exists
+    - name: Copy file app
+      command: cp -r /tmp/test-web/dist/test-web /var/www/html
+      when: state_labs.stat.exists
 
-    # - name: Start Nginx service
-    #   service:
-    #     name: nginx
-    #     state: started
-    #     enabled: yes
-    #   become: yes
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      become: yes
