@@ -17,6 +17,11 @@ jobs:
         # with:
           
           # args: "ansible" # my ansible files in a folder
+      - name: Execute Ansible Playbook
+        uses: saubermacherag/ansible-playbook-docker-action@v1.4
+        with:
+          playbookName: '../../main.yml'
+          inventoryFile: '../../inventory.ini'
   run-playbook:
     needs: [ validate ]
     runs-on: ubuntu-latest
