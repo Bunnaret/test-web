@@ -28,8 +28,8 @@ jobs:
       - name: Execute Ansible Playbook
         uses: saubermacherag/ansible-playbook-docker-action@v1.4
         with:
-          playbookName: './main.yml'
-          inventoryFile: './inventory.ini'
+          playbookName: 'main.yml'
+          inventoryFile: 'inventory.ini'
   run-playbook:
     needs: [ validate ]
     runs-on: ubuntu-latest
