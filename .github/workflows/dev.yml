@@ -17,6 +17,14 @@ jobs:
         # with:
           
           # args: "ansible" # my ansible files in a folder
+
+      - name: add cert
+        shell: bash
+        run: |
+          mkdir -p keys
+          touch ./keys/dev_private_key.pem
+          echo -e "${{secrets.PRKEY}}" > ./keys/dev_private_key.pem
+          
       - name: Execute Ansible Playbook
         uses: saubermacherag/ansible-playbook-docker-action@v1.4
         with:

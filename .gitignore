@@ -41,4 +41,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.private_key.pem
+.dev_private_key.pem
