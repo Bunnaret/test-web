@@ -1,0 +1,25 @@
+
+name: Ansible Dev
+on:
+  push:
+    branches: [ development ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # - name: Run ansible-lint
+      - name: check dri
+        run: pwd && ls
+        # uses: ansible-community/ansible-lint-action@v6.0.2
+        # with:
+          
+          # args: "ansible" # my ansible files in a folder
+  run-playbook:
+    needs: [ validate ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: check dri
+        run: pwd && ls
