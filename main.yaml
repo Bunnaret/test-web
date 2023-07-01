@@ -1,0 +1,88 @@
+- hosts: all
+  become: yes 
+  tasks:
+    - name: hello world
+      debug:
+        msg: "hello world"
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Delete test-web
+      ansible.builtin.file:
+        path: /tmp/test-web
+        state: absent
+
+    - name: Delete in nginx test-web
+      ansible.builtin.file:
+        path: /var/www/html/test-web
+        state: absent
+
+    - name: Intall git
+      apt: 
+        name: git
+        state: present
+    
+    - name: Install nvm
+      git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version=v0.33.11
+      tags: nvm
+
+    - name: Source nvm in ~/.{{ item }}
+      lineinfile: >
+          dest=~/.{{ item }}
+          line="source ~/.nvm/nvm.sh"
+          create=yes
+      tags: nvm
+      with_items:
+        - bashrc
+        - profile
+
+    - name: Install node and set version
+      shell: "source /root/.nvm/nvm.sh && nvm install 14" 
+      args:
+        executable: /bin/bash
+
+    - name: Install npm
+      apt:
+        name: npm
+        state: present
+
+    - name: Install Angular.js
+      npm:
+        name: "@angular/cli@14"
+        global: yes
+        state: present
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+    
+    - name: Stop service ngix
+      service: name=nginx state=stopped
+    
+    - name: Clone the Git repository
+      command: git clone -b development https://github.com/Bunnaret/test-web.git
+      args:
+        chdir: /tmp
+
+    - name: Install dependencies
+      command: npm install
+      args:
+        chdir: /tmp/test-web
+
+    - name: Build project
+      command: ng build --prod
+      args:
+        chdir: /tmp/test-web/
+
+    - name: Copy file app
+      command: cp -r /tmp/test-web/dist/test-web /var/www/html
+      when: state_labs.stat.exists
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
