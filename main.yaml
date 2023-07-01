@@ -19,6 +19,12 @@
       ansible.builtin.file:
         path: /var/www/html/test-web
         state: absent
+
+    - name: Intall git
+      apt: 
+        name: git
+        state: present
+      become: yes
     
     - name: Install nvm
       git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version=v0.33.11
@@ -56,12 +62,6 @@
     
     - name: Stop service ngix
       service: name=nginx state=stopped
-
-    - name: Intall git
-      apt: 
-        name: git
-        state: present
-      become: yes
   
     - name: Install npm
       apt:
