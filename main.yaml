@@ -63,7 +63,7 @@
         state: present
       become: yes
   
-    -name: Install npm
+    - name: Install npm
       apt:
         name: npm
         state: present
