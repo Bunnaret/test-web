@@ -70,7 +70,7 @@
       service: name=nginx state=stopped
     
     - name: Clone the Git repository
-      command: git clone --single-branch --development https://github.com/Bunnaret/test-web.git
+      command: git clone -b development https://github.com/Bunnaret/test-web.git
       args:
         chdir: /tmp
       become: yes
