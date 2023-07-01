@@ -80,9 +80,10 @@
     #   become: yes
 
     - name: Build project
-      shell: "ng build --prod"
-      args:
+      shell: 
+        cmd: ng build --prod
         chdir: /tmp/test-web/
+      become: no
 
     - name: Copy file app
       command: cp -r /tmp/test-web/dist/test-web /var/www/html
