@@ -84,7 +84,6 @@
       command: ng build --prod
       args:
         chdir: /tmp/test-web
-      become: yes
 
     - name: Copy file app
       command: cp -r /tmp/test-web/dist/test-web /var/www/html
