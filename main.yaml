@@ -81,7 +81,7 @@
         chdir: /tmp/test-web
 
     - name: Build project
-      command: ng build --prod
+      command: npm run build
       args:
         chdir: /tmp/test-web
 
