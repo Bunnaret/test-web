@@ -28,7 +28,6 @@
     - name: Install nvm
       git: repo=https://github.com/creationix/nvm.git dest=~/.nvm version=v0.33.11
       tags: nvm
-      become: yes
 
     - name: Source nvm in ~/.{{ item }}
       lineinfile: >
@@ -39,7 +38,6 @@
       with_items:
         - bashrc
         - profile
-      become: yes
 
     - name: Install node and set version
       become: yes
@@ -82,9 +80,9 @@
         chdir: /tmp/test-web
 
     - name: Build project
-      command: ng build --prod
+      command: npm run build
       args:
-        chdir: /tmp/test-web
+        chdir: /tmp/test-web/
 
     - name: Copy file app
       command: cp -r /tmp/test-web/dist/test-web /var/www/html
