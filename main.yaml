@@ -82,7 +82,7 @@
     - name: Build project
       shell: "ng build --prod"
       args:
-        executable: /tmp/test-web/
+        chdir: /tmp/test-web/
 
     - name: Copy file app
       command: cp -r /tmp/test-web/dist/test-web /var/www/html
