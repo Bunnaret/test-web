@@ -1,4 +1,5 @@
 - hosts: all
+  become: yes 
   tasks:
     - name: hello world
       debug:
@@ -7,7 +8,6 @@
     - name: Update apt cache
       apt:
         update_cache: yes
-      become: yes
 
     - name: Delete test-web
       ansible.builtin.file:
@@ -39,8 +39,6 @@
         - profile
 
     - name: Install node and set version
-      become: yes
-      become_user: root
       shell: "source /root/.nvm/nvm.sh && nvm install 14" 
       args:
         executable: /bin/bash
@@ -60,7 +58,6 @@
       apt:
         name: nginx
         state: present
-      become: yes
     
     - name: Stop service ngix
       service: name=nginx state=stopped
@@ -79,7 +76,6 @@
       command: ng build --prod
       args:
         chdir: /tmp/test-web/
-      become: no
 
     - name: Copy file app
       command: cp -r /tmp/test-web/dist/test-web /var/www/html
@@ -90,4 +86,3 @@
         name: nginx
         state: started
         enabled: yes
-      become: yes
