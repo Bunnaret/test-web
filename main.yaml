@@ -75,9 +75,9 @@
       args:
         chdir: /tmp/test-web
 
-    - name: Give permssion before build
-      command: chmod -R 777 /tmp/test-web
-      become: yes
+    # - name: Give permssion before build
+    #   command: chmod -R 777 /tmp/test-web
+    #   become: yes
 
     - name: Build project
       shell: "ng build --prod"
